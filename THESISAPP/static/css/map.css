@@ -1,0 +1,91 @@
+/* @media screen and (max-width:1300px){
+  .flex-container-public{
+    flex-flow: row wrap;
+    
+  }#map{
+    max-width: 480px;
+    min-width: 480px;
+    padding-left: 10px;
+  }
+}
+
+#map {
+  height: 700px;
+  width: 1200px;
+  margin: auto;
+} */
+
+#mapAdmin {
+    height: 680px;
+    max-width: 1200px;
+    margin-left: 50px;
+}
+.mapAdmin{
+  height: 600px!important;
+  width: 600px!important;
+  margin: 34px 10px 10px 35px!important;
+}
+.mapContainer{
+  position: relative;
+  margin: 0px 90px 20px 0px;
+}
+span{
+  font-family: Verdana, Arial, Tahoma, Serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.mapContainerPublic{
+  position: relative;
+  margin: 0px 90px 20px 0px;
+
+}
+  
+  /* 
+   * Optional: Makes the sample page fill the window. 
+   */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  /* .pagination{
+    justify-content: left;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    margin-top: 10px;
+  } */
+  .pagination a {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 16px;
+    transition: background-color .3s;
+    text-decoration: none;
+  }
+  .pagination a:hover:not(.active) {background-color: #ddd;}
+  .pagination a.active {
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .flex-container-public{
+    display: flex;
+    justify-content: flex-start;
+  }
+  .table-container{
+    width: 750px;
+    margin-left: 50px;
+  }
+  .flex-container{
+    display: flex;
+    justify-content: flex-start;
+  }
+  .latlong{
+    display: none;
+  }
+
+  .flex-start-admin{
+    margin-left: 60px;
+  }
