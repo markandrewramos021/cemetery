@@ -1,0 +1,308 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.jpg' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Application Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+    <script type="text/javascript" src="{% static 'js/dates.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        h3 {
+            color: black;
+        }
+        .container{
+            font-family: Roboto, sans-serif;
+            border-style: 1px solid grey;
+            background-color: rgb(174, 199, 192);
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0.8;
+            box-shadow: 2px 5px 5px 0px #eee;
+            max-width: 700px;
+            padding-top: 10px;
+            padding-bottom: 20px;
+            height: auto;
+            margin-top: 30px;
+        }
+        .heading {
+            text-decoration: bold;
+            text-align: center;
+            font-size: 40px;
+            color: rgb(0, 0, 0);
+            padding-top: 10px;
+        }
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        #helpCheckBox {
+            position: fixed;
+            bottom: 10px;
+            border-left-style: 30px;
+            display: none;
+        }
+
+        .help-container {
+            position: fixed;
+            bottom: 10px;
+            left: 25px;
+            cursor: pointer;
+            z-index: 1040;
+        }
+
+        .helpIconButton {
+            width: 50px;
+            height: 50px;
+            background: #188045;
+            border-radius: 100%;
+            cursor: pointer;
+            box-shadow: 8px 5px 5px #aaaaaa;
+        }
+
+        .helpIconButton i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: white;
+        }
+
+        /* Help List Stylings */
+
+        .helpOptions {
+            list-style-type: none;
+            position: absolute;
+            bottom: 45px;
+            left: 0px;
+            display: none;
+            max-height: 100vh;
+            z-index: 1040;
+        }
+
+        .helpOptions li {
+            display: flex;
+            justify-content: flex-end;
+            padding: 5px;
+            z-index: 1040;
+            position: relative;
+        }
+
+        .btn-label {
+            padding: 10px 25px;
+            margin-right: 10px;
+            align-self: center;
+            background-color: #188045;
+            color: white;
+            border-radius: 3px;
+            box-shadow: 8px 8px 5px #676767;
+            text-align: center;
+            max-width: 500px;
+            min-width: 350px;
+            border-radius: 15px;
+            z-index: 1040;
+            position: relative;
+
+        }
+
+        #helpCheckBox:checked+label .helpOptions {
+            display: inline;
+            transition: 1s;
+        }
+
+        /* .help-container:hover .helpOptions{
+  display:inline;
+} */
+        @media screen and (max-width: 500px) {
+            .helpIconButton i {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                color: white;
+                font-size: 15px;
+            }
+
+            .btn-label {
+                padding: 10px 25px;
+                margin-right: 10px;
+                align-self: center;
+                background-color: #188045;
+                color: white;
+                border-radius: 3px;
+                box-shadow: 8px 8px 5px #676767;
+                text-align: center;
+                max-width: 500px;
+                min-width: 230px;
+                border-radius: 15px;
+                z-index: 1040;
+            }
+
+            .helpOptions {
+                list-style-type: none;
+                position: absolute;
+                bottom: 45px;
+                right: 0px;
+                display: none;
+                z-index: 1040;
+            }
+
+            .help-container {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" >
+                <img src="{% static 'images/logo.jpg' %}" style="width: 55px;" class="rounded-pill">
+            </a>
+            <h3>Himlayang General Trias</h3>
+
+            <ul class="navbar-nav ms-auto">
+                <a href="{% url 'Homepage' %}" class="btn btn-secondary">Back</a>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert alert-success" id="msg" role="alert">
+                {{ message }}
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+	<form name="vform" onsubmit="return Validate()" method="post">{% csrf_token %} 
+        <div class="container">
+            <!-- Content here -->
+            <header class="heading"> APPLICATION FORM</header>
+            <hr>
+            </hr>
+            <input type="hidden" name="pk" value="{{user.pk}}">
+            <p class="text-center" style="font-size: 25px; font-family: verdana;">Apartment Unit Location:</p>
+            <div class="input-group">
+                <div class="input-group-prepend ">
+                <span class="input-group-text"  >Location</span>
+                </div>
+                <input type="text" name="phase" placeholder="Phase" class="form-control" required>
+                <input type="text" name="block" placeholder="Block" class="form-control" required>
+                <input type="text" name="lotno" placeholder="Lot No." id="id_apartment_lot" class="form-control" required>
+                <div id="Phase_error"></div>
+            </div>
+            <p class="text-center" style="font-size: 25px; font-family: verdana;">Fill Up Form :</p>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Date</span>
+                <input type="date" name="date" class="form-control" placeholder="Date" aria-label="Date" id="date" aria-describedby="basic-addon1" required>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="Full Name" name="Full Name">Full Name</span>
+                <input type="text" name="fullname" class="form-control" placeholder="Full Name"  aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" required>
+                    <div id="FN_error"></div>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="Age" name="Age" >Birthday</span>
+                <input type="date" class="form-control" placeholder="MM/DD/YYYY" name="birth" id="birth" required>
+                    <div id="Age_error"></div>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="Gender" name="Gender">Gender</span>
+                <input type="radio" id="Male" name="gender" value="Male" style="height: 12px; margin: 10px"> <label class="label" for="gender">Male</label>
+				<input type="radio"  id="Female" name="gender" value="Female" style="height: 12px; margin: 10px"> <label class="label" for="gender">Female</label>
+                    <div id="Gender_error"></div>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="Contacts" name="Contacts">Mobile No.:</span>
+                <input type="number" class="form-control" placeholder="Mobile No.:" name="contacts" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" onKeyPress="if(this.value.length==11)  return false;" required/>
+                    <div id="Contacts_error"></div>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="Address" name="Address">Address</span>
+                <input type="text" name="address" class="form-control" placeholder="Address" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" required>
+                    <div id="Address_error"></div>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="Email" name="Email">Email</span>
+                <input type="text" name="email" class="form-control" placeholder="Email" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" required>
+                    <div id="Email_error"></div>
+            </div>
+            <div class="d-flex justify-content-center mt-5 button_container">
+                <br>
+                <input type="submit" onclick="return confirm('Do you want to submit?')" value="Confirm" class="btn btn-secondary" />
+             </div>
+        </div>
+    </form>
+
+</body>
+
+<input type="checkbox" id="helpCheckBox">
+    <label class="help-container" for="helpCheckBox">
+        <label class="button helpIconButton hoverableButton" for="helpCheckBox" data-toggle="tooltip"
+            data-bs-placement="left" data-bs-offset="0,10" title="Help">
+            <i class="fa-solid fas fa-question">Help?</i>
+        </label>
+        <ul class="helpOptions">
+            <li>
+                <span class="btn-label hoverableButton" data-bs-toggle="modal" data-bs-target="#loginQ1">How to
+                    Rent Apartment Lots?</span>
+            </li>
+            </li>
+        </ul>
+    </label>
+
+    <div class="modal fade" id="loginQ1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-center d-flex justify-content-start">
+                    <img src="{% static 'images/logo.jpg' %}" style="width:55px;" class="rounded-pill">
+                    <h5 class="modal-title" id="exampleModalLabel"> Application Form Guide</h5>
+                </div>
+                <div class="modal-body" style="padding:2% 10% 2% 10%;">
+                    <div>
+                        <img class="img-fluid" alt="Responsive image" src="{% static 'images/ApplicationForm.png' %}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" style="background-color: #EF3A25; color: white;"
+                        data-bs-dismiss="modal" aria-label="Close"> Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    var message_ele = document.getElementById("msg");
+
+    setTimeout(function(){ 
+    message_ele.style.display = "none"; 
+    }, 2000);
+</script>
+
+</html>
+

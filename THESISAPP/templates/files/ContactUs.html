@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Contact Us</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.jpg' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        h3 {
+            color: black;
+        }
+
+        .btn-space {
+            margin-right: 5px;
+        }
+
+        .buttons {
+            margin-left: 140px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'Homepage' %}">
+                <img src="{% static 'images/logo.jpg' %}" style="width:55px;" class="rounded-pill">
+            </a>
+            <h3>Himlayang General Trias</h3>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Homepage' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'AboutUs' %}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'LotProperty' %}">Lot Property</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'GraveFinder' %}">Grave Finder</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'TermsofPayment' %}">Terms of Payment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ContactUs' %}">Contact Us</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle"  href="#" role="button"
+                                  data-bs-toggle="dropdown">Forms</a>
+                              <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="{% url 'ApplicationForm'  %}">Application Form</a></li>
+                                  <li><a class="dropdown-item" href="{% url 'BuyersForm'  %}">Buyers Form</a></li>
+                                  <li><a class="dropdown-item" href="{% url 'BookAppointment'  %}">Book Appointment</a></li>
+                              </ul>
+                    </li>
+                    
+                </ul>
+                <div class="buttons">
+                    <a href="{% url 'Login' %}" class="btn btn-space btn btn-primary">Login</a>
+                    <a href="{% url 'InquiryForm' %}" class="btn btn-space btn btn-secondary">Inquire</a>
+                </div>
+            </div>
+        </div>
+      </nav>
+    <div class="container-xl">
+        <h1 class="text-center p-3"> Contact Us </h1>
+        <div class="row center">
+            <div class="col-md-6 col-lg-2 col-xl-6 mx-auto mt-3">
+                <p class="text-center">
+                    <i class="fas fa-envelope mr-3 p-2"></i>info@generaltrias.gov.ph
+                </p>
+                <p class="text-center">
+                    <i class="fas fa-phone mr-3 p-2"></i>(046) 419 8380
+                </p>
+            </div>
+            <div class="col-md-6 col-lg-2 col-xl-6 mx-auto mt-3">
+                <p class="text-center">
+                    <i class="fas fa-map-marker-alt mr-3 p-2"></i>9W75+FPF, Unnamed Road, General Trias, Cavite
+                </p>
+                <p class="text-center">
+                    <i class="fas fa-map-marker-alt mr-3 p-2"></i>Main Office: 9VPJ+F9Q, General Trias, Cavite
+                </p>
+            </div>
+            <img src="{% static 'images/himlayan.png' %}" alt="himlayan" class="card-img-top" style="height: 700px;">
+    </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container text-center text-md-left">
+            <div class="row text-center text-md-left">
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Himlayang General Trias</h5>
+                    <p>Welcome to the official Cemetery Website of the City Government of General Trias!
+                        #AlagangFerrerAlagangGentri
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Lot Offers</h5>
+                    <p>
+                        <a class="text-white" style="text-decoration: none;">Apartment
+                            Type</a>
+                    </p>
+                    <p>
+                        <a class="text-white" style="text-decoration: none;">Lawn Lot</a>
+                    </p>
+                    <p>
+                        <a class="text-white" style="text-decoration: none;">Niche</a>
+                    </p>
+                    <p>
+                        <a class="text-white" style="text-decoration: none;">Mausoleum</a>
+                    </p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Useful Links</h5>
+                    <p>
+                        <a href="{% url 'Signup' %}" class="text-white" style="text-decoration: none;">Sign Up</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'TermsofPayment' %}" class="text-white" style="text-decoration: none;">Terms
+                            of
+                            Payment</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'PrivacyPolicy' %}" class="text-white" style="text-decoration: none;">Privacy
+                            Policy</a>
+                    </p>
+                </div>
+                <div class="col-md4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h5>
+                    <p>
+                        <i class="fas fa-home mr-3 p-2"></i>Imus City, Cavite, Philippines
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope mr-3 p-2"></i>info@generaltrias.gov.ph
+                    </p>
+                    <p>
+                        <i class="fas fa-phone mr-3 p-2"></i>(046) 419 8380
+                    </p>
+                </div>
+            </div>
+            <hr class="mb-4">
+            <div class="row align-items-center">
+                <div class="col-md-4 col-lg-5">
+                    <p>Created by: 
+                        <strong class="text-warning">BOCAR, ESPENIDO, RAMOS, YALUNG</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

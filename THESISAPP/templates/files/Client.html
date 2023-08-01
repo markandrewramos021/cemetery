@@ -1,0 +1,226 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Client Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.jpg' %}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        h3 {
+            color: black;
+        }
+        /* .container1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            max-height: 610px;
+        }
+        .carousel .carousel-inner{
+            height: 500px;
+        }
+        .carousel-inner .carousel-item img{
+            min-height: 200px;
+            object-fit: cover;
+        }
+        @media(max-width:768px){
+            .carousel .carousel-inner{
+                height: auto;
+            }
+        } */
+        
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" >
+                <img src="{% static 'images/logo.jpg' %}" style="width: 55px; padding-left: 0.9rem"  class="rounded-pill">
+            </a>
+            <h3 style="font-size: 25px;" >Himlayang General Trias</h3>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size: 20px;" href="{% url 'Client' user.pk %}">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size: 20px;" href="{% url 'Property' user.pk %}">Property</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size: 20px;" href="{% url 'BillSummary' user.pk %}">Bill Summary</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size: 20px;" href="{% url 'PaymentHistory' user.pk %}">Payment History</a>
+                    </li>
+                    
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <a href="{% url 'ChangePassword' user.pk %}" style="font-size: 16px;" class="btn btn-primary">Change Password</a>
+                    <a href="{% url 'Logout' %}" onclick="return confirm('Do you want to log out?')" style="font-size: 16px; margin-inline: 10px;" class="btn btn-secondary">Log Out</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert alert-success" id="msg" role="alert">
+                {{ message }}
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <div class="container1">
+        <h2 class="text-info" style="font-size: 35px;">Hello, {{user.first_name}} {{user.last_name}}</h2>
+        <h3>Welcome to your online account!</h3>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="{% static 'images/undraw_browsing_online_re_umsa.svg' %}" alt="" style="height: 300px;" class="d-block w-100">
+                </div>
+
+                <div class="item">
+                    <img src="{% static 'images/undraw_personal_data_29co.svg' %}" alt="" style="height: 300px;" class="d-block w-100">
+                </div>
+
+                <div class="item">
+                    <img src="{% static 'images/undraw_fingerprint_swrc.svg' %}" alt="" style="height: 300px;" class="d-block w-100">
+                </div>
+            </div>
+
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="bg-img"><br><br>
+            <div class="container2">
+                <p class="text-center" style="font-size: 35px; font-family: sans-serif;color: rgb(197, 2, 2); "> REMAINING BALANCE:</p>
+                <p class="text-center" id="receives" style="font-size: 25px; font-family: sans-serif;color: black;">
+                    <!-- {% for i in orders %}
+                     {{i.balance}}
+                    {% endfor %} -->
+                    {% for b in new_order %}
+                    {{ b.balance }}
+                    {% endfor %}
+                    {{no_display}}
+                </p> <br><br>
+                    
+                <p class="text-center" style="font-size: 35px; font-family: sans-serif;color: rgb(197, 2, 2); "> DUE DATE:</p>
+                <p class="text-center" id="returns" style="font-size: 25px; font-family: sans-serif;color: black; ">
+                    {% for e in new_order%}
+                    {{ e.due_date }}
+                    {% endfor %}
+                    {{no_display}}
+                </p>
+            </div>
+        </div>
+    </form>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container text-center text-md-left">
+            <div class="row text-center text-md-left">
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Himlayang General Trias</h5>
+                    <p>Welcome to the official Cemetery Website of the City Government of General Trias!
+                        #AlagangFerrerAlagangGentri
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Lot Offers</h5>
+                    <p>
+                        <a class="text-white" style="text-decoration: none;">Apartment
+                            Type</a>
+                    </p>
+                    <p>
+                        <a class="text-white" style="text-decoration: none;">Lawn Lot</a>
+                    </p>
+                    <p>
+                        <a class="text-white" style="text-decoration: none;">Niche</a>
+                    </p>
+                    <p>
+                        <a class="text-white" style="text-decoration: none;">Mausoleum</a>
+                    </p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Useful Links</h5>
+                    <p>
+                        <a class="text-white" style="text-decoration: none;">Sign Up</a>
+                    </p>
+                    <p>
+                        <a class="text-white" style="text-decoration: none;">Terms of
+                            Payment</a>
+                    </p>
+                    <p>
+                        <a class="text-white" style="text-decoration: none;">Privacy Policy</a>
+                    </p>
+                </div>
+                <div class="col-md4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h5>
+                    <p>
+                        <i class="fas fa-home mr-3 p-2"></i>Imus City, Cavite, Philippines
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope mr-3 p-2"></i>info@generaltrias.gov.ph
+                    </p>
+                    <p>
+                        <i class="fas fa-phone mr-3 p-2" ></i>(046) 419 8380
+                    </p>
+                </div>
+            </div>
+            <hr class="mb-4">
+            <div class="row align-items-center">
+                <div class="col-md-4 col-lg-5">
+                    <p>Created by: 
+                        <strong class="text-warning">BOCAR, ESPENIDO, RAMOS, YALUNG</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+<script>
+   var message_ele = document.getElementById("msg");
+
+   setTimeout(function(){ 
+   message_ele.style.display = "none"; 
+   }, 2000);
+</script>
+
+</html>

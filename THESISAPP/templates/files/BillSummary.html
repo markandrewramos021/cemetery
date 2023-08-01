@@ -1,0 +1,116 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.jpg' %}">
+    <title>Bill Summary</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <style>
+        h3 {
+            color: black;
+        }
+        .container{
+            font-family: Roboto, sans-serif;
+            border-style: 1px solid grey;
+            background-color: rgb(174, 199, 192);
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0.8;
+            box-shadow: 2px 5px 5px 0px #eee;
+            max-width: 700px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            height: 800px;
+            margin-top: 50px;
+        }
+        .heading {
+            text-decoration: bold;
+            text-align: center;
+            font-size: 40px;
+            color: rgb(0, 0, 0);
+            padding-top: 10px;
+        }
+        .table {
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            min-width: 400px;
+            height: 45vh;
+            border-radius: 5px 5px 0 0;
+            margin-bottom: 70px;
+            position: relative;
+        }
+
+        .table thead tr {
+            color: #ffffff;
+            text-align: left;
+            font-weight: bold;
+        }
+        .table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+        .table tbody tr.active-row {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand">
+                <img src="{% static 'images/logo.jpg' %}" style="width:55px;" class="rounded-pill">
+            </a>
+            <h3>Himlayang General Trias</h3>
+
+            <ul class="navbar-nav ms-auto">
+                <a href="{% url 'Client' user.pk %}" class="btn btn-secondary">BACK</a>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <form name="vform" method="post">
+
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Acquired Lots</th>
+                    <th scope="col">Terms of Payment</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Date Paid</th>
+                    <th scope="col">Unpaid Balance</th>
+                    <th scope="col">Due Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{order.product.lot}} | Phase:{{order.product.phase}} Block:{{order.product.block}} Lot:{{order.product.lotno}}</td>
+                    <td>{{order.terms}}</td>
+                    <td>{{order.status}}</td>
+                    <td>{{order.pay}}</td>
+                    <td>{{order.paid_date}}</td>
+                    <td>{{order.balance}} </td>
+                    <td>{{order.due_date}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+</body>
+
+</html>

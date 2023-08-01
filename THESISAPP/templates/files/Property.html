@@ -1,0 +1,303 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.jpg' %}">
+    <title>Property</title>
+    <meta charset="utf-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQVmcMjxpC9weEbkB8mBZZh0bXDbJhnsc"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'js/jquery.min.js'%}"></script>
+  <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+  <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <style>
+        #helpCheckBox {
+      position: fixed;
+      bottom: 10px;
+      border-left-style: 30px;
+      display: none;
+    }
+
+    .help-container {
+      position: fixed;
+      bottom: 10px;
+      left: 25px;
+      cursor: pointer;
+      z-index: 1040;
+    }
+
+    .helpIconButton {
+      width: 50px;
+      height: 50px;
+      background: #188045;
+      border-radius: 100%;
+      cursor: pointer;
+      box-shadow: 8px 5px 5px #aaaaaa;
+    }
+
+    .helpIconButton i {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: white;
+    }
+
+    /* Help List Stylings */
+
+    .helpOptions {
+      list-style-type: none;
+      position: absolute;
+      bottom: 45px;
+      left: 0px;
+      display: none;
+      max-height: 100vh;
+      z-index: 1040;
+    }
+
+    .helpOptions li {
+      display: flex;
+      justify-content: flex-end;
+      padding: 5px;
+      z-index: 1040;
+      position: relative;
+    }
+
+    .btn-label {
+      padding: 10px 25px;
+      margin-right: 10px;
+      align-self: center;
+      background-color: #188045;
+      color: white;
+      border-radius: 3px;
+      box-shadow: 8px 8px 5px #676767;
+      text-align: center;
+      max-width: 500px;
+      min-width: 350px;
+      border-radius: 15px;
+      z-index: 1040;
+      position: relative;
+
+    }
+
+    #helpCheckBox:checked+label .helpOptions {
+      display: inline;
+      transition: 1s;
+    }
+
+    /* .help-container:hover .helpOptions{
+  display:inline;
+} */
+    @media screen and (max-width: 500px) {
+      .helpIconButton i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        color: white;
+        font-size: 15px;
+      }
+
+      .btn-label {
+        padding: 10px 25px;
+        margin-right: 10px;
+        align-self: center;
+        background-color: #188045;
+        color: white;
+        border-radius: 3px;
+        box-shadow: 8px 8px 5px #676767;
+        text-align: center;
+        max-width: 500px;
+        min-width: 230px;
+        border-radius: 15px;
+        z-index: 1040;
+      }
+
+      .helpOptions {
+        list-style-type: none;
+        position: absolute;
+        bottom: 45px;
+        right: 0px;
+        display: none;
+        z-index: 1040;
+      }
+
+      .help-container {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        cursor: pointer;
+      }
+    }
+        h3 {
+            color: black;
+        }
+        .main-container{
+            display: flex;
+            gap: 10px;
+        }
+        .container2{
+            font-family: Roboto, sans-serif;
+            border-style: 1px solid grey;
+            background-color: rgb(174, 199, 192);
+            margin: 10px;
+            opacity: 0.8;
+            box-shadow: 2px 5px 5px 0px #eee;
+            width: 480px;
+            max-width: 480px;
+            padding-top: 5px;
+            height: auto;
+            padding: 20px 20px 20px 20px;
+            margin-top: 20px;
+            
+            
+        }
+        .heading {
+            text-decoration: bold;
+            text-align: center;
+            font-size: 40px;
+            color: rgb(0, 0, 0);
+            padding-top: 10px;
+        }
+        @media screen and (max-width:1300px) {
+      .main-container {
+       flex-flow: column wrap;
+       align-self: center;
+      }.container2{
+        height: auto;
+      }
+
+      #map {
+        max-width: 480px;
+        min-width: 480px;
+        padding-left: 10px;
+      }
+    }
+
+    #map {
+      height: 700px;
+      width: 1325px;
+      margin: auto;
+    }
+    .mapContainerPublic {
+      margin: 20px 90px 10px 0px;
+
+    }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand">
+                <img src="{% static 'images/logo.jpg' %}" style="width: 55px; padding-left: 0.9rem" class="rounded-pill">
+            </a>
+            <h3 style="font-size: 25px;"> Himlayang General Trias
+            </h3>
+
+            <ul class="navbar-nav ms-auto">
+                <a href="{% url 'Client' user.pk %}" style="font-size: 16px;" class="btn btn-secondary">BACK</a>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+        <div class="main-container">
+            <div class="container2">
+                <div class="container2-1">
+                    <div class="container2-2">
+                        <!-- Content here -->
+                        <h2 class="text-center" style="font-size: 35px;">CLIENT INFORMATION</h2>
+                        <hr>
+                        </hr>
+                        <p style="font-size: 18px;">Full Name :{{user.first_name}} {{user.last_name}}
+                            </p>
+                        <p style="font-size: 18px;">Birthdate: {{user.birth}}</p>
+                        <p style="font-size: 18px;">Gender :{{user.gender}}</p>
+                        <p style="font-size: 18px;">Contacts :{{user.contacts}}</p>
+                        <p style="font-size: 18px;">Address :{{user.address}}</p>
+                        <p style="font-size: 18px;">Email :{{user.email}}</p>
+                        <p style="font-size: 18px;">Owned Lot/s: {% for i in display %} 
+                            <a class="btn btn-primary btn-success" style="display: block; font-size: medium;"onclick="clickViewButton('{{i.product.latitude}}','{{i.product.longitude}}')">
+                                ({{i.product.lot}}: Phase:{{i.product.phase}} Block:{{i.product.block}} Lot No.:{{i.product.lotno}}), 
+                            </a>
+                            {% endfor %}</p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div style="overflow-x:auto;" class="col-sm-12">
+                <table class="table table-bordered table-dark table-hover">
+                  <thead>
+                    <tr>
+                      <thead>
+                        <th>Name</th>
+                        <th>Date of Birth</th>
+                        <th>Date of Death</th>
+                        <th>Lot Address</th>
+                        <th>Action</th>
+                      </thead>
+                    </tr>
+                    {% for dis in display2 %}
+                    <tr>
+                      <td>{{dis.deceased}}</td>
+                      <td>{{dis.born}}</td>
+                      <td>{{dis.died}}</td>
+                      <td class="lotaddress">{{dis.owner.product}}</td>
+                      <td><a class="btn btn-primary" style="font-size: 15px;" href="{% url 'AddDeceasedUpdateClient' dis.pk %}">Update</a>
+                        <a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this?')" href="">Delete</a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </thead>
+                </table>
+              </div> -->
+              <div class="mapContainerPublic">
+                <!-- maps for google -->
+            <div id="map"></div>
+    </div>
+</div>
+</body>
+<input type="checkbox" id="helpCheckBox">
+    <label class="help-container" for="helpCheckBox">
+      <label class="button helpIconButton hoverableButton" for="helpCheckBox" data-toggle="tooltip"
+        data-bs-placement="left" data-bs-offset="0,10" title="Help">
+        <i>Help?</i>
+      </label>
+      <ul class="helpOptions">
+        <li>
+          <span class="btn-label hoverableButton" data-bs-toggle="modal" data-bs-target="#loginQ1">How to
+            View Owned Lots?</span>
+        </li>
+        </li>
+      </ul>
+    </label>
+
+    <div class="modal fade" id="loginQ1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+          <div class="modal-header text-center d-flex justify-content-start">
+            <img src="{% static 'images/logo.jpg' %}" style="width:55px;" class="rounded-pill">
+            <h5 class="modal-title" id="exampleModalLabel"> Property Guide</h5>
+          </div>
+          <div class="modal-body" style="padding:2% 10% 2% 10%;">
+            <div>
+              <img class="img-fluid" alt="Responsive image" src="">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn" style="background-color: #EF3A25; color: white;" data-bs-dismiss="modal"
+              aria-label="Close"> Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
